@@ -1,10 +1,16 @@
 {
   "name": "react-dategrid",
+  "author": "Anton Niklasson <niklasson.anton@gmail.com>",
+  "license": "ISC",
   "version": "0.1.0",
   "description": "",
   "main": "lib/dategrid.js",
   "directories": {
     "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest",
+    "tdd": "jest --watchAll"
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
@@ -12,6 +18,7 @@
     "babel-preset-react": "^6.24.1",
     "dom-testing-library": "^1.1.0",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.4.3",
     "moment": "^2.22.0",
     "react": "^16.3.1",
@@ -19,9 +26,9 @@
     "react-test-renderer": "^16.3.1",
     "sinon": "^4.5.0"
   },
-  "scripts": {
-    "test": "jest"
-  },
-  "author": "Anton Niklasson <niklasson.anton@gmail.com>",
-  "license": "ISC"
+  "jest": {
+    "setupFiles": [
+      "./jestSetup.js"
+    ]
+  }
 }
