@@ -10,7 +10,7 @@
     body {
       background: white;
       color: #222;
-      font: 20px 'Helvetica Neue', helvetica, sans-serif;
+      font: 15px 'Helvetica Neue', helvetica, sans-serif;
     }
 
     #app {
@@ -19,11 +19,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: bold;
       text-align: center;
     }
 
-    table {
+    table thead {
+      font-weight: bold;
+    }
+
+    table tbody {
       text-align: right;
     }
   </style>
@@ -40,7 +43,7 @@
   <script src="../dist/react-dategrid.js"></script>
   <script type="text/babel">
     ReactDOM.render(
-      <Dategrid now={moment()} renderDay={day => <button>{day}</button>} />,
+      <Dategrid now={moment()} />,
       document.querySelector('#app')
     );
   </script>

@@ -30,108 +30,161 @@
   var Dategrid = function (_React$Component) {
     _inherits(Dategrid, _React$Component);
 
-    function Dategrid() {
+    function Dategrid(props) {
       _classCallCheck(this, Dategrid);
 
-      return _possibleConstructorReturn(this, (Dategrid.__proto__ || Object.getPrototypeOf(Dategrid)).apply(this, arguments));
+      var _this = _possibleConstructorReturn(this, (Dategrid.__proto__ || Object.getPrototypeOf(Dategrid)).call(this, props));
+
+      _this.onPreviousMonthClick = function () {
+        _this.setState({
+          view: moment(_this.state.view).subtract(1, "month")
+        });
+      };
+
+      _this.onNextMonthClick = function () {
+        _this.setState({
+          view: moment(_this.state.view).add(1, "month")
+        });
+      };
+
+      _this.state = {
+        view: props.view || moment().startOf("day")
+      };
+      return _this;
     }
 
     _createClass(Dategrid, [{
-      key: 'getFirstWeekArray',
+      key: "getFirstWeekArray",
       value: function getFirstWeekArray() {
-        var now = moment(this.props.now);
-        var firstWeekdayOfCurrentMonth = (now.date(1).day() + 6) % 7;
-        var lastDateInPreviousMonth = now.subtract(1, 'month').daysInMonth();
+        var _this2 = this;
 
-        return [].concat(_toConsumableArray(createEmptyArray(firstWeekdayOfCurrentMonth).map(function (v, i) {
+        var firstWeekdayOfCurrentMonth = (moment(this.state.view).date(1).day() + 6) % 7;
+        var lastDateInPreviousMonth = moment(this.state.view).subtract(1, "month").daysInMonth();
+
+        var previousMonthDays = createEmptyArray(firstWeekdayOfCurrentMonth).map(function (v, i) {
           return lastDateInPreviousMonth - i;
-        }).reverse()), _toConsumableArray(createRangeArray(7 - firstWeekdayOfCurrentMonth)));
+        }).reverse().map(function (day) {
+          return moment(_this2.state.view).subtract(1, "month").date(day);
+        });
+        var currentMonthDays = createRangeArray(7 - firstWeekdayOfCurrentMonth).map(function (day) {
+          return moment(_this2.state.view).date(day);
+        });
+
+        return [].concat(_toConsumableArray(previousMonthDays), _toConsumableArray(currentMonthDays));
       }
     }, {
-      key: 'getWeekArray',
-      value: function getWeekArray(startDate) {
-        var lastDateInMonth = this.props.now.daysInMonth();
-        return createEmptyArray(7).map(function (v, i) {
-          return startDate + i;
-        }).map(function (date) {
-          return date > lastDateInMonth ? date - lastDateInMonth : date;
+      key: "getOtherWeeks",
+      value: function getOtherWeeks(firstWeek) {
+        var generateWeek = function generateWeek(weekOffset, lastDay) {
+          return createEmptyArray(7).map(function (v, i) {
+            return moment(lastDay).add(weekOffset, "week").add(i + 1, "day");
+          });
+        };
+
+        return createEmptyArray(5).map(function (v, i) {
+          return generateWeek(i, firstWeek[firstWeek.length - 1]);
         });
       }
     }, {
-      key: 'getDaysArray',
+      key: "getDaysArray",
       value: function getDaysArray(daysInMonth) {
         return createRangeArray(daysInMonth);
       }
     }, {
-      key: 'getWeeksArray',
+      key: "getWeeksArray",
       value: function getWeeksArray() {
         var firstWeek = this.getFirstWeekArray();
+        var otherWeeks = this.getOtherWeeks(firstWeek);
 
-        return [firstWeek, this.getWeekArray(firstWeek[6] + 1 + 0 * 7), this.getWeekArray(firstWeek[6] + 1 + 1 * 7), this.getWeekArray(firstWeek[6] + 1 + 2 * 7), this.getWeekArray(firstWeek[6] + 1 + 3 * 7), this.getWeekArray(firstWeek[6] + 1 + 4 * 7)];
+        return [firstWeek].concat(_toConsumableArray(otherWeeks));
       }
     }, {
-      key: 'render',
+      key: "render",
       value: function render() {
-        var _this2 = this;
+        var view = this.state.view;
+        var _props = this.props,
+            renderDay = _props.renderDay,
+            withoutWeekdays = _props.withoutWeekdays;
+
+        var weeksArray = this.getWeeksArray();
 
         return React.createElement(
-          'table',
+          "table",
           null,
           React.createElement(
-            'thead',
+            "thead",
             null,
             React.createElement(
-              'tr',
+              "tr",
               null,
               React.createElement(
-                'td',
-                null,
-                'Mo'
+                "th",
+                { alt: "Previous Month", onClick: this.onPreviousMonthClick },
+                "\u226A"
               ),
               React.createElement(
-                'td',
-                null,
-                'Tu'
+                "th",
+                { colSpan: 5 },
+                view.format("MMMM YYYY")
               ),
               React.createElement(
-                'td',
+                "th",
+                { alt: "Next Month", onClick: this.onNextMonthClick },
+                "\u226B"
+              )
+            ),
+            !withoutWeekdays && React.createElement(
+              "tr",
+              null,
+              React.createElement(
+                "td",
                 null,
-                'We'
+                "Mo"
               ),
               React.createElement(
-                'td',
+                "td",
                 null,
-                'Th'
+                "Tu"
               ),
               React.createElement(
-                'td',
+                "td",
                 null,
-                'Fr'
+                "We"
               ),
               React.createElement(
-                'td',
+                "td",
                 null,
-                'Sa'
+                "Th"
               ),
               React.createElement(
-                'td',
+                "td",
                 null,
-                'Su'
+                "Fr"
+              ),
+              React.createElement(
+                "td",
+                null,
+                "Sa"
+              ),
+              React.createElement(
+                "td",
+                null,
+                "Su"
               )
             )
           ),
           React.createElement(
-            'tbody',
+            "tbody",
             null,
-            this.getWeeksArray().map(function (week, weekIndex) {
+            weeksArray.map(function (week, weekIndex) {
               return React.createElement(
-                'tr',
+                "tr",
                 { key: weekIndex },
                 week.map(function (day, dayIndex) {
                   return React.createElement(
-                    'td',
+                    "td",
                     { key: dayIndex },
-                    _this2.props.renderDay(day)
+                    renderDay(day)
                   );
                 })
               );
@@ -146,17 +199,15 @@
 
   Dategrid.propTypes = {
     now: PropTypes.object.isRequired,
-    renderDay: PropTypes.func
+    renderDay: PropTypes.func,
+    withoutWeekdays: PropTypes.bool
   };
 
   Dategrid.defaultProps = {
-    renderDay: function renderDay(day, index) {
-      return React.createElement(
-        'td',
-        { key: index },
-        day
-      );
-    }
+    renderDay: function renderDay(date) {
+      return date.date();
+    },
+    withoutWeekdays: false
   };
 
   return Dategrid;
