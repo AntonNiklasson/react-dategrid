@@ -17,7 +17,9 @@
   "devDependencies": {
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "dom-testing-library": "^1.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -34,6 +36,7 @@
   "jest": {
     "setupFiles": [
       "./jestSetup.js"
-    ]
+    ],
+    "moduleDirectories": ["node_modules", "lib"]
   }
 }
