@@ -12,7 +12,8 @@
     "test": "jest",
     "tdd": "jest --watchAll",
     "build": "rollup -c",
-    "build:watch": "rollup -c --watch"
+    "build:watch": "rollup -c --watch",
+    "lint": "eslint lib demo"
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
@@ -23,8 +24,16 @@
     "dom-testing-library": "^1.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.3",
     "moment": "^2.22.0",
+    "prettier": "^1.11.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
@@ -37,6 +46,9 @@
     "setupFiles": [
       "./jestSetup.js"
     ],
-    "moduleDirectories": ["node_modules", "lib"]
+    "moduleDirectories": [
+      "node_modules",
+      "lib"
+    ]
   }
 }

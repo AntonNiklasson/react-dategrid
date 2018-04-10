@@ -72,6 +72,8 @@
     }, {
       key: "render",
       value: function render() {
+        var _this2 = this;
+
         return React.createElement(
           "table",
           null,
@@ -121,17 +123,11 @@
           React.createElement(
             "tbody",
             null,
-            this.getWeeksArray().map(function (week) {
+            this.getWeeksArray().map(function (week, weekIndex) {
               return React.createElement(
                 "tr",
-                null,
-                week.map(function (day) {
-                  return React.createElement(
-                    "td",
-                    null,
-                    day
-                  );
-                })
+                { key: weekIndex },
+                week.map(_this2.props.renderDay)
               );
             })
           )
@@ -143,7 +139,18 @@
   }(React.Component);
 
   Dategrid.propTypes = {
-    now: PropTypes.object.isRequired
+    now: PropTypes.object.isRequired,
+    renderDay: PropTypes.func
+  };
+
+  Dategrid.defaultProps = {
+    renderDay: function renderDay(day, index) {
+      return React.createElement(
+        "td",
+        { key: index },
+        day
+      );
+    }
   };
 
   return Dategrid;
