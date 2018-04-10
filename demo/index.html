@@ -37,6 +37,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"></script>
   <script src="../dist/react-dategrid.js"></script>
   <script>
+    // &copy; Måns Hommerberg 2018- http://applicvision.com
+    const html = new Proxy({}, {
+      get(factories, element) {
+          return factories[element] ||
+              (factories[element] = React.createElement.bind(null, element));
+      }
+    });
+    // /&copy;
+
     ReactDOM.render(
       React.createElement(
           'div',
@@ -46,7 +55,7 @@
               {
                 now: moment(),
                 renderDay: function(day) {
-                  return React.createElement('button', {}, day)
+                  return html.button({}, day)
                 }
               }
           )
