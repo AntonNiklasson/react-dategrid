@@ -37,18 +37,18 @@
     }
 
     _createClass(Dategrid, [{
-      key: "getFirstWeekArray",
+      key: 'getFirstWeekArray',
       value: function getFirstWeekArray() {
         var now = moment(this.props.now);
         var firstWeekdayOfCurrentMonth = (now.date(1).day() + 6) % 7;
-        var lastDateInPreviousMonth = now.subtract(1, "month").daysInMonth();
+        var lastDateInPreviousMonth = now.subtract(1, 'month').daysInMonth();
 
         return [].concat(_toConsumableArray(createEmptyArray(firstWeekdayOfCurrentMonth).map(function (v, i) {
           return lastDateInPreviousMonth - i;
         }).reverse()), _toConsumableArray(createRangeArray(7 - firstWeekdayOfCurrentMonth)));
       }
     }, {
-      key: "getWeekArray",
+      key: 'getWeekArray',
       value: function getWeekArray(startDate) {
         var lastDateInMonth = this.props.now.daysInMonth();
         return createEmptyArray(7).map(function (v, i) {
@@ -58,76 +58,82 @@
         });
       }
     }, {
-      key: "getDaysArray",
+      key: 'getDaysArray',
       value: function getDaysArray(daysInMonth) {
         return createRangeArray(daysInMonth);
       }
     }, {
-      key: "getWeeksArray",
+      key: 'getWeeksArray',
       value: function getWeeksArray() {
         var firstWeek = this.getFirstWeekArray();
 
         return [firstWeek, this.getWeekArray(firstWeek[6] + 1 + 0 * 7), this.getWeekArray(firstWeek[6] + 1 + 1 * 7), this.getWeekArray(firstWeek[6] + 1 + 2 * 7), this.getWeekArray(firstWeek[6] + 1 + 3 * 7), this.getWeekArray(firstWeek[6] + 1 + 4 * 7)];
       }
     }, {
-      key: "render",
+      key: 'render',
       value: function render() {
         var _this2 = this;
 
         return React.createElement(
-          "table",
+          'table',
           null,
           React.createElement(
-            "thead",
+            'thead',
             null,
             React.createElement(
-              "tr",
+              'tr',
               null,
               React.createElement(
-                "td",
+                'td',
                 null,
-                "Mo"
+                'Mo'
               ),
               React.createElement(
-                "td",
+                'td',
                 null,
-                "Tu"
+                'Tu'
               ),
               React.createElement(
-                "td",
+                'td',
                 null,
-                "We"
+                'We'
               ),
               React.createElement(
-                "td",
+                'td',
                 null,
-                "Th"
+                'Th'
               ),
               React.createElement(
-                "td",
+                'td',
                 null,
-                "Fr"
+                'Fr'
               ),
               React.createElement(
-                "td",
+                'td',
                 null,
-                "Sa"
+                'Sa'
               ),
               React.createElement(
-                "td",
+                'td',
                 null,
-                "Su"
+                'Su'
               )
             )
           ),
           React.createElement(
-            "tbody",
+            'tbody',
             null,
             this.getWeeksArray().map(function (week, weekIndex) {
               return React.createElement(
-                "tr",
+                'tr',
                 { key: weekIndex },
-                week.map(_this2.props.renderDay)
+                week.map(function (day, dayIndex) {
+                  return React.createElement(
+                    'td',
+                    { key: dayIndex },
+                    _this2.props.renderDay(day)
+                  );
+                })
               );
             })
           )
@@ -146,7 +152,7 @@
   Dategrid.defaultProps = {
     renderDay: function renderDay(day, index) {
       return React.createElement(
-        "td",
+        'td',
         { key: index },
         day
       );

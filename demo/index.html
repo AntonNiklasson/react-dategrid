@@ -38,9 +38,21 @@
   <script src="../dist/react-dategrid.js"></script>
   <script>
     ReactDOM.render(
-      React.createElement('div', null, React.createElement(Dategrid, { now: moment(), renderDay: function(day, index) { return <span key={index}>{day}</span> } })
-      R,
-      document.querySelector('#app'));
+      React.createElement(
+          'div',
+          null,
+          React.createElement(
+              Dategrid,
+              {
+                now: moment(),
+                renderDay: function(day) {
+                  return React.createElement('button', {}, day)
+                }
+              }
+          )
+      ),
+      document.querySelector('#app')
+    );
   </script>
 </body>
 
