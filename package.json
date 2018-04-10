@@ -10,7 +10,9 @@
   },
   "scripts": {
     "test": "jest",
-    "tdd": "jest --watchAll"
+    "tdd": "jest --watchAll",
+    "build": "rollup -c",
+    "build:watch": "rollup -c --watch"
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
@@ -25,6 +27,8 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-test-renderer": "^16.3.1",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^3.0.3",
     "sinon": "^4.5.0"
   },
   "jest": {
