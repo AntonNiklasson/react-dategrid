@@ -1,0 +1,36 @@
+body {
+  background: white;
+  color: #222;
+  font: 20px 'Helvetica Neue', helvetica, sans-serif;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+table thead {
+  font-weight: bold;
+}
+
+table tbody {
+  text-align: right;
+}
+
+.day {
+  padding: 10px;
+  transition: all 300ms;
+}
+
+.day:hover {
+  background: tomato;
+  color: white;
+}
+
+.day--today {
+  border: 2px solid Tomato;
+}
