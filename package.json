@@ -3,7 +3,7 @@
   "author": "Anton Niklasson <niklasson.anton@gmail.com>",
   "homepage": "http://www.antonniklasson.se",
   "license": "ISC",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/dategrid.js",
   "directories": {
