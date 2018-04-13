@@ -7,8 +7,14 @@ class App extends React.Component {
     return <div className="day">{day.date()}</div>;
   }
 
+  renderTitle(view) {
+    return <div className="title">{view.format("MMMM YYYY")} 📅</div>;
+  }
+
   render() {
-    return <Dategrid renderDay={this.renderDay} />;
+    return (
+      <Dategrid renderTitle={this.renderTitle} renderDay={this.renderDay} />
+    );
   }
 }
 

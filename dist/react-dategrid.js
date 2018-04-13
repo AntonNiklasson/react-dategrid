@@ -48,7 +48,7 @@
       };
 
       _this.state = {
-        view: props.view || moment().startOf("day")
+        view: moment().startOf("day")
       };
       return _this;
     }
@@ -101,16 +101,22 @@
     }, {
       key: "render",
       value: function render() {
+        var _this3 = this;
+
         var view = this.state.view;
         var _props = this.props,
+            className = _props.className,
             renderDay = _props.renderDay,
+            renderPreviousNavigation = _props.renderPreviousNavigation,
+            renderNextNavigation = _props.renderNextNavigation,
+            renderTitle = _props.renderTitle,
             withoutWeekdays = _props.withoutWeekdays;
 
         var weeksArray = this.getWeeksArray();
 
         return React.createElement(
           "table",
-          null,
+          { className: className },
           React.createElement(
             "thead",
             null,
@@ -119,58 +125,34 @@
               null,
               React.createElement(
                 "th",
-                { alt: "Previous Month", onClick: this.onPreviousMonthClick },
-                "\u226A"
+                null,
+                renderPreviousNavigation({
+                  gotoPreviousMonth: this.gotoPreviousMonth
+                })
               ),
               React.createElement(
                 "th",
                 { colSpan: 5 },
-                view.format("MMMM YYYY")
+                renderTitle(view)
               ),
               React.createElement(
                 "th",
-                { alt: "Next Month", onClick: this.onNextMonthClick },
-                "\u226B"
+                null,
+                renderNextNavigation({ gotoNextMonth: this.gotoNextMonth })
               )
             ),
             !withoutWeekdays && React.createElement(
               "tr",
               null,
-              React.createElement(
-                "td",
-                null,
-                "Mo"
-              ),
-              React.createElement(
-                "td",
-                null,
-                "Tu"
-              ),
-              React.createElement(
-                "td",
-                null,
-                "We"
-              ),
-              React.createElement(
-                "td",
-                null,
-                "Th"
-              ),
-              React.createElement(
-                "td",
-                null,
-                "Fr"
-              ),
-              React.createElement(
-                "td",
-                null,
-                "Sa"
-              ),
-              React.createElement(
-                "td",
-                null,
-                "Su"
-              )
+              createEmptyArray(7).map(function (v, i) {
+                return i;
+              }).map(function (i) {
+                return React.createElement(
+                  "td",
+                  { key: i },
+                  _this3.props.renderWeekday(i)
+                );
+              })
             )
           ),
           React.createElement(
@@ -184,7 +166,7 @@
                   return React.createElement(
                     "td",
                     { key: dayIndex },
-                    renderDay(day)
+                    renderDay(day, view)
                   );
                 })
               );
@@ -198,16 +180,58 @@
   }(React.Component);
 
   Dategrid.propTypes = {
-    now: PropTypes.object.isRequired,
+    className: PropTypes.string,
     renderDay: PropTypes.func,
+    renderPreviousNavigation: PropTypes.func,
+    renderNextNavigation: PropTypes.func,
+    renderTitle: PropTypes.func,
     withoutWeekdays: PropTypes.bool
   };
 
   Dategrid.defaultProps = {
-    renderDay: function renderDay(date) {
-      return date.date();
+    className: "",
+    renderDay: function renderDay(day) {
+      return day.date();
     },
-    withoutWeekdays: false
+    renderTitle: function renderTitle(view) {
+      return view.format("MMMM YYYY");
+    },
+    renderPreviousNavigation: function renderPreviousNavigation(_ref) {
+      var gotoPreviousMonth = _ref.gotoPreviousMonth;
+      return React.createElement(
+        "span",
+        { onClick: gotoPreviousMonth },
+        "‹"
+      );
+    },
+    renderNextNavigation: function renderNextNavigation(_ref2) {
+      var gotoNextMonth = _ref2.gotoNextMonth;
+      return React.createElement(
+        "span",
+        { onClick: gotoNextMonth },
+        "›"
+      );
+    },
+    renderWeekday: function renderWeekday(index) {
+      switch (index) {
+        case 0:
+          return "Mo";
+        case 1:
+          return "Tu";
+        case 2:
+          return "We";
+        case 3:
+          return "Th";
+        case 4:
+          return "Fr";
+        case 5:
+          return "Sa";
+        case 6:
+          return "Su";
+        default:
+          return null;
+      }
+    }
   };
 
   return Dategrid;
