@@ -12,17 +12,18 @@
   "scripts": {
     "test": "jest",
     "tdd": "jest --watchAll",
+    "lint": "eslint lib",
     "build": "rollup -c",
-    "build:watch": "rollup -c --watch",
-    "lint": "eslint lib demo"
+    "build:watch": "rollup -c --watch"
   },
   "peerDependencies": {
+    "moment": "^2.22.0",
     "prop-types": "^15.6.1",
-    "react": "^16.3.1",
-    "moment": "^2.22.0"
+    "react": "^16.3.1"
   },
   "devDependencies": {
     "@babel/standalone": "^7.0.0-beta.44",
+    "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
@@ -38,6 +39,7 @@
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.3",
     "moment": "^2.22.0",

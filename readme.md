@@ -31,3 +31,18 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.querySelector("#app"));
 ```
+
+### Props
+
+#### className
+
+#### renderDay
+
+Arguments:
+
+- day [moment instance]
+    - The current day to render
+- view [moment instance]
+    - The current view of the calendar. Extract month, year etc from this.
+
+#### withoutWeekdays
