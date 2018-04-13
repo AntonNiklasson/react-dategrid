@@ -1,7 +1,7 @@
 {
   "name": "react-dategrid",
   "author": "Anton Niklasson <niklasson.anton@gmail.com>",
-  "homepage": "http://www.antonniklasson.se",
+  "homepage": "https://github.com/AntonNiklasson/react-dategrid",
   "license": "MIT",
   "version": "0.0.2-1",
   "description": "",
@@ -15,6 +15,11 @@
     "build": "rollup -c",
     "build:watch": "rollup -c --watch",
     "lint": "eslint lib demo"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "moment": "^2.22.0"
   },
   "devDependencies": {
     "@babel/standalone": "^7.0.0-beta.44",
