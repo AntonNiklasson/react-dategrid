@@ -26,10 +26,9 @@ class Datepicker extends React.Component {
   renderWeekday = (index) => {
     const weekday = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'][index];
 
-    return <div className={index < 5 ? 'workday' : 'weekend'}>{weekday}</div>
-  }
+    return <div className={index < 5 ? 'workday' : 'weekend'}>{weekday}</div> }
 
-  renderDay = (day) => {
+  renderDay = (day, view) => {
     if (moment().isSame(day, "day")) {
       return (
         <div className="day day--today">{day.date()}</div>
@@ -50,3 +49,21 @@ class Datepicker extends React.Component {
   }
 }
 ```
+
+## Props
+
+### renderTitle(view)
+
+Receives the current view instance. This will be placed between the navigations with a colspan fixed to 5.
+
+### renderPreviousNavigation(props)
+
+Receives props to be spread on the interactive navigation element.
+
+### renderNextNavigation(props)
+
+Receives props to be spread on the interactive navigation element.
+
+### renderDay(day, view)
+
+Receives a specific day as a moment instance together with the current view. This will be rendered into a `<td />`.
