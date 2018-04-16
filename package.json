@@ -14,7 +14,8 @@
     "tdd": "jest --watchAll",
     "lint": "eslint lib",
     "build": "rollup -c",
-    "build:watch": "rollup -c --watch"
+    "build:watch": "rollup -c --watch",
+    "version": "npm run build"
   },
   "peerDependencies": {
     "moment": "^2.22.0",
