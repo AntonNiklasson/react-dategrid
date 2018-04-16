@@ -5,7 +5,7 @@
   "license": "MIT",
   "version": "0.0.3-3",
   "description": "",
-  "main": "dist/dategrid.js",
+  "main": "dist/react-dategrid.js",
   "directories": {
     "lib": "lib"
   },

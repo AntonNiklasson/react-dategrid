@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react'), require('prop-types'), require('react-dom'), require('moment')) :
-  typeof define === 'function' && define.amd ? define(['react', 'prop-types', 'react-dom', 'moment'], factory) :
-  (global.Dategrid = factory(global.React,global.PropTypes,global.reactDom,global.moment));
-}(this, (function (React,PropTypes,reactDom,moment) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react'), require('prop-types'), require('moment')) :
+  typeof define === 'function' && define.amd ? define(['react', 'prop-types', 'moment'], factory) :
+  (global.Dategrid = factory(global.React,global.PropTypes,global.moment));
+}(this, (function (React,PropTypes,moment) { 'use strict';
 
   React = React && React.hasOwnProperty('default') ? React['default'] : React;
   PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
@@ -34,18 +34,6 @@
       _classCallCheck(this, Dategrid);
 
       var _this = _possibleConstructorReturn(this, (Dategrid.__proto__ || Object.getPrototypeOf(Dategrid)).call(this, props));
-
-      _this.onPreviousMonthClick = function () {
-        _this.setState({
-          view: moment(_this.state.view).subtract(1, "month")
-        });
-      };
-
-      _this.onNextMonthClick = function () {
-        _this.setState({
-          view: moment(_this.state.view).add(1, "month")
-        });
-      };
 
       _this.state = {
         view: moment().startOf("day")
@@ -99,6 +87,20 @@
         return [firstWeek].concat(_toConsumableArray(otherWeeks));
       }
     }, {
+      key: "gotoPreviousMonth",
+      value: function gotoPreviousMonth() {
+        this.setState({
+          view: moment(this.state.view).subtract(1, "month")
+        });
+      }
+    }, {
+      key: "gotoNextMonth",
+      value: function gotoNextMonth() {
+        this.setState({
+          view: moment(this.state.view).add(1, "month")
+        });
+      }
+    }, {
       key: "render",
       value: function render() {
         var _this3 = this;
@@ -127,7 +129,7 @@
                 "th",
                 null,
                 renderPreviousNavigation({
-                  gotoPreviousMonth: this.gotoPreviousMonth
+                  onClick: this.gotoPreviousMonth.bind(this)
                 })
               ),
               React.createElement(
@@ -138,7 +140,9 @@
               React.createElement(
                 "th",
                 null,
-                renderNextNavigation({ gotoNextMonth: this.gotoNextMonth })
+                renderNextNavigation({
+                  onClick: this.gotoNextMonth.bind(this)
+                })
               )
             ),
             !withoutWeekdays && React.createElement(
