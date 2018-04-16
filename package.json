@@ -3,7 +3,7 @@
   "author": "Anton Niklasson <niklasson.anton@gmail.com>",
   "homepage": "https://github.com/AntonNiklasson/react-dategrid",
   "license": "MIT",
-  "version": "0.0.3-4",
+  "version": "0.0.3-5",
   "description": "",
   "main": "dist/react-dategrid.js",
   "directories": {
