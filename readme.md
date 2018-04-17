@@ -1,12 +1,12 @@
 # React Dategrid
 
-A calendar component based on render props.
+A calendar component based on [render props](https://reactjs.org/docs/render-props.html).
 
 <img width="300" src="https://raw.githubusercontent.com/AntonNiklasson/react-dategrid/master/demo.png" />
 
 ---
 
-CircleCI: [![CircleCI](https://circleci.com/gh/AntonNiklasson/react-dategrid/tree/master.svg?style=svg)](https://circleci.com/gh/AntonNiklasson/react-dategrid/tree/master)
+[![CircleCI](https://circleci.com/gh/AntonNiklasson/react-dategrid/tree/master.svg?style=svg)](https://circleci.com/gh/AntonNiklasson/react-dategrid/tree/master)
 
 ## Install
 
