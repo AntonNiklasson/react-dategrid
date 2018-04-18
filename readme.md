@@ -1,6 +1,6 @@
 # React Dategrid 📅
 
-A calendar component based on render props.
+A calendar component based on [render props](https://reactjs.org/docs/render-props.html).
 
 The approach is to _make as few decisions as possible_. The only markup it renders is the structure for the underlying table, everything else is up to the consumer. It has no knowledge of something like a _selected date_ or how do style past dates. Implement that kind of behaviour in `renderDay`. The only thing it really needs is a moment instance to base its view on.
 
