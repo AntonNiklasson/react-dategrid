@@ -1,12 +1,8 @@
-# React Dategrid
+# React Dategrid 📅
 
 A calendar component based on [render props](https://reactjs.org/docs/render-props.html).
 
-<img width="300" src="https://raw.githubusercontent.com/AntonNiklasson/react-dategrid/master/demo.png" />
-
----
-
-[![CircleCI](https://circleci.com/gh/AntonNiklasson/react-dategrid/tree/master.svg?style=svg)](https://circleci.com/gh/AntonNiklasson/react-dategrid/tree/master)
+The approach is to _make as few decisions as possible_. The only markup it renders is the structure for the underlying table, everything else is up to the consumer. It has no knowledge of something like a _selected date_ or how do style past dates. Implement that kind of behaviour in `renderDay`. The only thing it really needs is a moment instance to base its view on.
 
 ## Install
 
@@ -23,6 +19,10 @@ Each `day` is a moment instance. The `view` is what is currently shown by the co
 import Dategrid from 'react-dategrid';
 
 class Datepicker extends React.Component {
+  state = {
+    view: moment()
+  }
+
   renderTitle = (view) => {
     return <strong>{view.format('MMMM YYYY')}</strong>;
   }
@@ -45,6 +45,7 @@ class Datepicker extends React.Component {
   render() {
     return (
       <Dategrid
+        view={this.state.view}
         renderTitle={this.renderTitle}
         renderWeekday={this.renderWeekday}
         renderDay={this.renderDay}
@@ -55,6 +56,14 @@ class Datepicker extends React.Component {
 ```
 
 ## Props
+
+### view
+
+The current view to render.
+
+### onViewChange(updatedView)
+
+Called as the view updates.
 
 ### renderTitle(view)
 
