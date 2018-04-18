@@ -3,9 +3,12 @@
   "author": "Anton Niklasson <niklasson.anton@gmail.com>",
   "homepage": "https://github.com/AntonNiklasson/react-dategrid",
   "license": "MIT",
-  "version": "0.0.3-6",
+  "version": "0.0.3",
   "description": "A minimal calendar component based on render props",
-  "keywords": ["react", "calendar"],
+  "keywords": [
+    "react",
+    "calendar"
+  ],
   "main": "dist/react-dategrid.js",
   "directories": {
     "lib": "lib"
